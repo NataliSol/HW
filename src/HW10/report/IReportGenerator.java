@@ -1,4 +1,4 @@
-package HW10;
+package HW10.report;
 
 import java.util.Map;
 

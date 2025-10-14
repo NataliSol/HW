@@ -1,4 +1,6 @@
-package HW10;
+package HW10.io;
+
+import HW10.io.IFileWriter;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;

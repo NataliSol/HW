@@ -1,5 +1,11 @@
-package HW10;
+package HW10.core;
 
+
+import HW10.converter.IDataConverter;
+import HW10.events.*;
+import HW10.io.IFileReader;
+import HW10.io.IFileWriter;
+import HW10.report.IReportGenerator;
 
 import java.util.HashMap;
 import java.util.List;

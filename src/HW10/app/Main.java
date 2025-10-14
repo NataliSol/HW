@@ -1,5 +1,15 @@
-package HW10;
+package HW10.app;
 
+
+import HW10.converter.DataConverterImpl;
+import HW10.converter.IDataConverter;
+import HW10.core.RaceAnalyticService;
+import HW10.io.CsvReaderImpl;
+import HW10.io.CsvWriter;
+import HW10.io.IFileReader;
+import HW10.io.IFileWriter;
+import HW10.report.IReportGenerator;
+import HW10.report.ReportGenerator;
 
 public class Main {
     public static void main(String[] args) {

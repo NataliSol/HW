@@ -1,4 +1,6 @@
-package HW10;
+package HW10.io;
+
+import HW10.io.IFileReader;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

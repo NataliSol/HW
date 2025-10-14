@@ -1,8 +1,10 @@
-package HW10;
+package HW10.events;
+
+import HW10.core.RaceEvent;
 
 import java.util.Map;
 
-public class PassEventHandler implements EventHandler {
+public class LossEventHandler implements EventHandler {
     @Override
     public void handle(Map<Integer, String> driverPositions, RaceEvent event) {
         int newPosition = event.getPosition();
@@ -12,9 +14,7 @@ public class PassEventHandler implements EventHandler {
             driverPositions.put(newPosition, driver);
         } else {
             int currentPosition = findDriverPosition(driverPositions, driver);
-
             String displacedDriver = driverPositions.get(newPosition);
-
             driverPositions.put(newPosition, driver);
             driverPositions.put(currentPosition, displacedDriver);
         }

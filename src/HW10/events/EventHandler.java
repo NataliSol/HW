@@ -1,4 +1,6 @@
-package HW10;
+package HW10.events;
+
+import HW10.core.RaceEvent;
 
 import java.util.Map;
 

@@ -1,4 +1,6 @@
-package HW10;
+package HW10.converter;
+
+import HW10.core.RaceEvent;
 
 import java.util.List;
 

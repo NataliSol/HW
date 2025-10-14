@@ -1,4 +1,9 @@
-package HW10;
+package HW10.core;
+
+import HW10.events.FinishEventHandler;
+import HW10.events.LossEventHandler;
+import HW10.events.PassEventHandler;
+import HW10.events.StartEventHandler;
 
 import java.util.Map;
 

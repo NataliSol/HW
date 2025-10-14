@@ -1,4 +1,4 @@
-package HW10;
+package HW10.core;
 
 public class RaceEvent{
     private String type;

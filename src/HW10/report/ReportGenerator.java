@@ -1,4 +1,6 @@
-package HW10;
+package HW10.report;
+
+import HW10.report.IReportGenerator;
 
 import java.util.Map;
 import java.util.TreeMap;
