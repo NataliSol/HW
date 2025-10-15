@@ -1,24 +1,25 @@
 package HW10.report;
 
-import HW10.report.IReportGenerator;
-
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 public class ReportGenerator implements IReportGenerator {
     @Override
-    public String generateReport(Map<Integer, String> driverPositions) {
+    public String generateReport(Map<String, Integer> driverPositions) {
         StringBuilder reportBuilder = new StringBuilder();
 
-        reportBuilder.append("position,driver\n");
+        reportBuilder.append("driver,final_position\n");
 
-        Map<Integer, String> sortedPositions = new TreeMap<>(driverPositions);
-
-        for (Map.Entry<Integer, String> entry : sortedPositions.entrySet()) {
-            int position = entry.getKey();
-            String driver = entry.getValue();
-            reportBuilder.append(position).append(",").append(driver).append("\n");
+        Map<Integer, String> sortedByPosition = new TreeMap<>();
+        for (Map.Entry<String, Integer> entry : driverPositions.entrySet()) {
+            sortedByPosition.put(entry.getValue(), entry.getKey());
         }
+
+        for (Map.Entry<Integer, String> entry : sortedByPosition.entrySet()) {
+            String driver = entry.getValue();
+            int position = entry.getKey();
+            reportBuilder.append(driver).append(",").append(position).append("\n");
+        }
+
         return reportBuilder.toString();
     }
 }

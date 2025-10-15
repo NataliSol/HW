@@ -17,8 +17,8 @@ public class RaceAnalyticService {
     private final IFileWriter fileWriter;
     private final IDataConverter dataConverter;
     private final IReportGenerator reportGenerator;
-    private final EventStrategy eventStrategy;
-    private final Map<Integer, String> driverPositions;
+    private final EventStrategy strategy;
+    private final Map<String, Integer> driverPositions;
 
     public RaceAnalyticService(
             IFileReader fileReader,
@@ -31,14 +31,14 @@ public class RaceAnalyticService {
         this.dataConverter = dataConverter;
         this.reportGenerator = reportGenerator;
 
-        Map<String, EventHandler> handlers = Map.of(
-                "s", new StartEventHandler(),
-                "p", new PassEventHandler(),
-                "l", new LossEventHandler(),
-                "f", new FinishEventHandler()
-        );
 
-        this.eventStrategy = new EventStrategy();
+        this.strategy = new EventStrategy(Map.of(
+                EventType.S, new StartEventHandler(),
+                EventType.P, new PassEventHandler(),
+                EventType.L, new LossEventHandler(),
+                EventType.F, new FinishEventHandler()
+        ));
+
         this.driverPositions = new HashMap<>();
     }
 
@@ -48,7 +48,7 @@ public class RaceAnalyticService {
         List<RaceEvent> events = dataConverter.convert(rawData);
 
         for (RaceEvent event : events) {
-            eventStrategy.handleEvent(driverPositions, event);
+            strategy.handleEvent(driverPositions, event);
         }
 
         String report = reportGenerator.generateReport(driverPositions);

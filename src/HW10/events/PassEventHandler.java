@@ -6,29 +6,31 @@ import java.util.Map;
 
 public class PassEventHandler implements EventHandler {
     @Override
-    public void handle(Map<Integer, String> driverPositions, RaceEvent event) {
+    public void handle(Map<String, Integer> driverPositions, RaceEvent event) {
         int newPosition = event.getPosition();
         String driver = event.getDriver();
 
-        if (!driverPositions.containsValue(driver)) {
-            driverPositions.put(newPosition, driver);
+        if (!driverPositions.containsKey(driver)) {
+            driverPositions.put(driver, newPosition);
         } else {
-            int currentPosition = findDriverPosition(driverPositions, driver);
+            int currentPosition = driverPositions.get(driver);
+            String displacedDriver = findDriverByPosition(driverPositions, newPosition);
 
-            String displacedDriver = driverPositions.get(newPosition);
-
-            driverPositions.put(newPosition, driver);
-            driverPositions.put(currentPosition, displacedDriver);
+            driverPositions.put(driver, newPosition);
+            if (displacedDriver != null) {
+                driverPositions.put(displacedDriver, currentPosition);
+            }
         }
     }
 
-    private int findDriverPosition(Map<Integer, String> driverPositions, String driver) {
-        for (Map.Entry<Integer, String> entry : driverPositions.entrySet()) {
-            if (entry.getValue().equals(driver)) {
+    private String findDriverByPosition(Map<String, Integer> driverPositions, int position) {
+        for (Map.Entry<String, Integer> entry : driverPositions.entrySet()) {
+            if (entry.getValue() == position) {
                 return entry.getKey();
             }
         }
-        return -1;
+        return null;
+
     }
 }
 

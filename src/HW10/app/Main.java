@@ -13,8 +13,8 @@ import HW10.report.ReportGenerator;
 
 public class Main {
     public static void main(String[] args) {
-        String pathRead = "C:\\Users\\Наташа\\Desktop\\csv\\drivers.csv";
-        String pathWrite = "C:\\Users\\Наташа\\Desktop\\csv\\resultList.csv";
+        String pathRead = "src/HW10/resources/drivers.csv";
+        String pathWrite = "src/HW10/resources/resultList.csv";
 
         IFileReader reader = new CsvReaderImpl();
         IDataConverter converter = new DataConverterImpl();

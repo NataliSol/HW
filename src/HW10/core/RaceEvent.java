@@ -1,17 +1,19 @@
 package HW10.core;
 
+import HW10.events.EventType;
+
 public class RaceEvent{
-    private String type;
+    private EventType type;
     private String driver;
     private Integer position;
 
-    public RaceEvent(String type, String driver, Integer position) {
+    public RaceEvent(EventType type, String driver, int position) {
         this.type = type;
         this.driver = driver;
         this.position = position;
     }
 
-    public String getType() {
+    public EventType getType() {
         return type;
     }
 
@@ -23,4 +25,8 @@ public class RaceEvent{
         return position;
     }
 
+
+    public EventType type() {
+        return type;
+    }
 }
