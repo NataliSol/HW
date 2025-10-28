@@ -17,26 +17,20 @@ public class Main {
                 "ERROR", 0
         ));
         try (BufferedReader reader = new BufferedReader(new FileReader("server.log"))) {
-             String line;
-            while ((line = reader.readLine()) != null) {
-                if (line.contains("INFO")) {
-                    Integer info = logMap.get("INFO");
-                    logMap.replace("INFO", info + 1);
-                } else if (line.contains("WARN")) {
-                    Integer info = logMap.get("WARN");
-                    logMap.replace("WARN", info + 1);
-                } else if (line.contains("ERROR")) {
-                    Integer info = logMap.get("ERROR");
-                    logMap.replace("ERROR", info + 1);
+            reader.lines().forEach(line->{
+                for (String key:logMap.keySet()){
+                    if(line.contains(key)){
+                        logMap.merge(key,1,Integer::sum);
+                        break;
+                    }
                 }
-            }
-
+            });
         } catch (IOException e) {
             e.printStackTrace();
         }
         try (FileWriter writer = new FileWriter("report.txt")) {
             for (Map.Entry<String, Integer> entry : logMap.entrySet()) {
-                writer.write(entry.getKey() + ": <" + entry.getValue()+"> "+"\n");
+                writer.write(entry.getKey() + ": <" + entry.getValue() + ">\n");
             }
         } catch (IOException e) {
             e.printStackTrace();
